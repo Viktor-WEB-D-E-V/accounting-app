@@ -1,6 +1,14 @@
-import css from "./SearchPanel.css";
+import css from "./SearchPanel.module.css";
 
 const SearchPanel = () => {
-  return <></>;
+  return (
+    <div className={css.searchInputContainer}>
+      <input
+        type="text"
+        className={css.searchInput}
+        placeholder="Search employee"
+      />
+    </div>
+  );
 };
 export default SearchPanel;

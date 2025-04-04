@@ -1,0 +1,26 @@
+.employeeItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid rgb(151, 7, 71);
+  border-radius: 4px;
+  padding: 10px 15px;
+}
+.listControls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+.controlsItemRaise {
+  color: green;
+}
+.controlsItemRaise:hover {
+  color: goldenrod;
+}
+.controlsItemDelete {
+  color: brown;
+}
+.controlsItemDelete:hover {
+  color: red;
+}

@@ -1,0 +1,18 @@
+.btnFilterGroup {
+  margin-top: 20px;
+  display: flex;
+  gap: 5px;
+}
+.item {
+  border: 1px solid white;
+  padding: 10px 25px;
+
+  border-radius: 4px;
+  color: white;
+}
+
+.item:focus,
+.item:hover {
+  background-color: white;
+  color: rgb(151, 7, 71);
+}
