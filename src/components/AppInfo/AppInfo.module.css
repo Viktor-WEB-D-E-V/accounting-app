@@ -1,0 +1,13 @@
+.appInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background-color: #970747;
+  color: #fff;
+  padding: 25px;
+  border-radius: 8px;
+}
+.name {
+  display: inline-block;
+  color: black;
+}
