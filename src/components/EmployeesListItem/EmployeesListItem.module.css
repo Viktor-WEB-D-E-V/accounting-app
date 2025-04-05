@@ -17,10 +17,12 @@
 }
 .controlsItemRaise:hover {
   color: goldenrod;
+  transition: color 250ms linear;
 }
 .controlsItemDelete {
   color: brown;
 }
 .controlsItemDelete:hover {
   color: red;
+  transition: color 250ms linear;
 }

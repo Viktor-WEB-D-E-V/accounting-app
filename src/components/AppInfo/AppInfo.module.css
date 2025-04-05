@@ -6,9 +6,20 @@
   background-color: rgb(151, 7, 71);
   color: #fff;
   border-radius: 8px;
-  box-shadow: 15px 15px 30px rgba(151, 7, 71, 0.30);
+  box-shadow: 15px 15px 30px rgba(151, 7, 71, 0.3);
 }
+
+.appTitle {
+  display: inline-block;
+  font-size: 1.5rem;
+}
+
+.appSubTitle {
+  font-size: 1.2rem;
+}
+
 .name {
   display: inline-block;
-  color: black;
+  color: #ffeb3b; 
+  font-weight: bold; 
 }
