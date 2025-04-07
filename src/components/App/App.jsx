@@ -3,6 +3,7 @@ import AppInfo from "../AppInfo/AppInfo";
 import SearchPanel from "../SearchPanel/SearchPanel";
 import AppFilter from "../AppFilter/AppFilter";
 import EmployeesList from "../EmployeesList/EmployeesList";
+import EmployeesAddForm from "../EmployeesAddForm/EmployeesAddForm";
 import { useState } from "react";
 function App() {
   const [employees, setEmployees] = useState([
@@ -25,6 +26,7 @@ function App() {
         <AppFilter />
       </div>
       <EmployeesList />
+      <EmployeesAddForm />
     </div>
   );
 }
