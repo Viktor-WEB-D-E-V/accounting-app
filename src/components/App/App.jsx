@@ -17,6 +17,11 @@ function App() {
       salary: 500,
       isRaise: false,
     },
+    {
+      name: "Oksana",
+      salary: 900,
+      isRaise: false,
+    },
   ]);
   return (
     <div className={css.container}>
@@ -25,7 +30,7 @@ function App() {
         <SearchPanel />
         <AppFilter />
       </div>
-      <EmployeesList />
+      <EmployeesList employees={employees} />
       <EmployeesAddForm />
     </div>
   );
