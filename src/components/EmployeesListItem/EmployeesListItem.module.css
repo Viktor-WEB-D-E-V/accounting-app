@@ -12,6 +12,14 @@
   align-items: center;
   gap: 15px;
 }
+.controlsItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.icon {
+  font-size: 25px;
+}
 .controlsItemRaise {
   color: green;
 }
@@ -25,4 +33,11 @@
 .controlsItemDelete:hover {
   color: red;
   transition: color 250ms linear;
+}
+.controlsItemStar {
+  color: white;
+}
+
+.raise {
+  color: goldenrod;
 }

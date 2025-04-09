@@ -11,18 +11,22 @@ function App() {
       name: "Viktor",
       salary: 1000,
       isRaise: true,
+      id:1
     },
     {
       name: "Serhii",
       salary: 500,
       isRaise: false,
+      id:2
     },
     {
       name: "Oksana",
       salary: 900,
       isRaise: false,
+      id:3
     },
   ]);
+  
   return (
     <div className={css.container}>
       <AppInfo />
