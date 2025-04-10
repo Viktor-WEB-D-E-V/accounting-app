@@ -5,6 +5,8 @@
   border: 1px solid rgb(151, 7, 71);
   border-radius: 4px;
   padding: 10px 15px;
+
+  cursor: pointer;
 }
 .listControls {
   display: flex;
@@ -19,6 +21,7 @@
 }
 .icon {
   font-size: 25px;
+  margin: auto;
 }
 .controlsItemRaise {
   color: green;
@@ -37,7 +40,10 @@
 .controlsItemStar {
   color: white;
 }
-
 .raise {
+  color: goldenrod;
+}
+.increase {
+  font-weight: bold;
   color: goldenrod;
 }

@@ -12,48 +12,57 @@ class EmployeesListItem extends Component {
     super(props);
 
     this.state = {
-      isRaise: false,
-      increase: false,
+      isPromoted: false,
+      hasIncrease: false,
     };
   }
 
-  onRaise = () => {
-    this.setState(({ isRaise }) => ({
-      isRaise: !isRaise,
+  togglePromotion = () => {
+    this.setState(({ isPromoted }) => ({
+      isPromoted: !isPromoted,
     }));
   };
 
-  onIncrease = () => {
-    this.setState(({ increase }) => ({
-      increase: !increase,
+  toggleIncrease = () => {
+    this.setState(({ hasIncrease }) => ({
+      hasIncrease: !hasIncrease,
     }));
   };
 
   render() {
     const { name, salary } = this.props;
-    const { isRaise } = this.state;
+    const { isPromoted, hasIncrease } = this.state;
 
-    let classNames = css.employeeItem;
-    if (isRaise) {
-      classNames += " " + css.raise;
-    }
+    let classNames = clsx(css.employeeItem, {
+      [css.raise]: isPromoted,
+      [css.increase]: hasIncrease,
+    });
 
     return (
       <li className={classNames}>
-        <h3 onClick={this.onIncrease} className="name">
+        <h3 onClick={this.toggleIncrease} className="name">
           {name}
         </h3>
         <p className="salary">{salary}$</p>
         <ul className={css.listControls}>
-          <li className={css.controlsItemRaise}>
-            <FaHandHoldingDollar className={css.icon} onClick={this.onRaise} />
+          <li className={clsx(css.controlsItemRaise, css.controlsItem)}>
+            <FaHandHoldingDollar
+              className={css.icon}
+              onClick={this.togglePromotion}
+              role="button"
+              title="Toggle Promotion"
+            />
           </li>
-          <li className={css.controlsItemDelete}>
-            <FaBucket className={css.icon} />
+          <li className={clsx(css.controlsItemDelete, css.controlsItem)}>
+            <FaBucket
+              className={css.icon}
+              role="button"
+              title="Delete Employee"
+            />
           </li>
           <li
-            className={clsx(css.controlsItemStar, {
-              [css.raise]: this.state.increase,
+            className={clsx(css.controlsItemStar, css.controlsItem,{
+              [css.raise]: hasIncrease,
             })}
           >
             <FaFaceGrinStars className={css.icon} />
