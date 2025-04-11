@@ -15,7 +15,7 @@ class App extends Component {
         {
           name: "Viktor",
           salary: 1000,
-          raise: true,
+          raise: false,
           increase: false,
           id: 1,
         },
@@ -69,7 +69,7 @@ class App extends Component {
 
   onToggleRaise = (id) => {
     this.setState(({ employees }) => ({
-      employees: employees.map((employee) => 
+      employees: employees.map((employee) =>
         employee.id === id ? { ...employee, raise: !employee.raise } : employee
       ),
     }));
@@ -80,7 +80,10 @@ class App extends Component {
 
     return (
       <div className={css.container}>
-        <AppInfo />
+        <AppInfo
+          employeesNum={employees.length}
+          increase={employees.filter((employee) => employee.increase !== false).length}
+        />
         <div className={css.searchContainer}>
           <SearchPanel />
           <AppFilter />

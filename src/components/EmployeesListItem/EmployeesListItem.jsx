@@ -18,21 +18,22 @@ const EmployeesListItem = (props) => {
   } = props;
 
   let classNames = clsx(css.employeeItem, {
-    [css.raise]: raise,
-    [css.increase]: increase,
+    [css.raise]: increase,
   });
 
   return (
     <li className={classNames}>
-      <h3 onClick={onToggleIncrease} className="name">
+      <h3 onClick={onToggleRaise} className="name">
         {name}
       </h3>
       <p className="salary">{salary}$</p>
       <ul className={css.listControls}>
         <li className={clsx(css.controlsItemRaise, css.controlsItem)}>
           <FaHandHoldingDollar
-            className={css.icon}
-            onClick={onToggleRaise}
+            className={clsx(css.icon, {
+              [css.raise]: increase,
+            })}
+            onClick={onToggleIncrease}
             role="button"
             title="Toggle Promotion"
           />
@@ -47,7 +48,7 @@ const EmployeesListItem = (props) => {
         </li>
         <li
           className={clsx(css.controlsItemStar, css.controlsItem, {
-            [css.raise]: increase,
+            [css.raise]: raise,
           })}
         >
           <FaFaceGrinStars className={css.icon} />
