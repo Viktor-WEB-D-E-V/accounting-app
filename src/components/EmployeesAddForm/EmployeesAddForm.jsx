@@ -16,6 +16,15 @@ class EmployeesAddForm extends Component {
     });
   };
 
+  onSumbit = (e) => {
+    e.preventDefault();
+    this.props.onAdd(this.state);
+
+    this.setState({
+      name: "",
+      salary: "",
+    });
+  };
   render() {
     const { name, salary } = this.state;
 
@@ -40,7 +49,11 @@ class EmployeesAddForm extends Component {
             onChange={this.onValueChange}
           />
 
-          <button className={css.submitBtn} type="submit">
+          <button
+            className={css.submitBtn}
+            type="submit"
+            onClick={this.onSumbit}
+          >
             Add
           </button>
         </form>

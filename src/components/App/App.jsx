@@ -10,6 +10,8 @@ class App extends Component {
   constructor(props) {
     super(props);
 
+    this.itemId = 4;
+
     this.state = {
       employees: [
         {
@@ -41,6 +43,20 @@ class App extends Component {
       };
     });
   };
+
+  addItem = ({ name, salary }) => {
+    const newEmployee = {
+      name: name,
+      salary: salary,
+      id: this.itemId++,
+      isRaise: false,
+    };
+
+    this.setState(({ employees }) => {
+      const newArr = [...employees, newEmployee];
+      return { employees: newArr };
+    });
+  };
   render() {
     const { employees } = this.state;
 
@@ -52,7 +68,7 @@ class App extends Component {
           <AppFilter />
         </div>
         <EmployeesList onDelete={this.deleteItem} employees={employees} />
-        <EmployeesAddForm />
+        <EmployeesAddForm onAdd={this.addItem} />
       </div>
     );
   }
