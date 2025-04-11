@@ -1,6 +1,11 @@
 import css from "./EmployeesList.module.css";
 import EmployeesListItem from "../EmployeesListItem/EmployeesListItem";
-const EmployeesList = ({ employees, onDelete }) => {
+const EmployeesList = ({
+  employees,
+  onDelete,
+  onToggleIncrease,
+  onToggleRaise,
+}) => {
   const employeesList = employees.map((employee) => {
     const { id, ...employeeList } = employee;
     return (
@@ -9,6 +14,12 @@ const EmployeesList = ({ employees, onDelete }) => {
         {...employeeList}
         onDelete={() => {
           onDelete(id);
+        }}
+        onToggleIncrease={() => {
+          onToggleIncrease(id);
+        }}
+        onToggleRaise={() => {
+          onToggleRaise(id);
         }}
       />
     );

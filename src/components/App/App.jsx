@@ -9,27 +9,28 @@ import { Component } from "react";
 class App extends Component {
   constructor(props) {
     super(props);
-
     this.itemId = 4;
-
     this.state = {
       employees: [
         {
           name: "Viktor",
           salary: 1000,
-          isRaise: true,
+          raise: true,
+          increase: false,
           id: 1,
         },
         {
           name: "Serhii",
           salary: 500,
-          isRaise: false,
+          raise: false,
+          increase: false,
           id: 2,
         },
         {
           name: "Oksana",
           salary: 900,
-          isRaise: false,
+          raise: false,
+          increase: false,
           id: 3,
         },
       ],
@@ -43,20 +44,37 @@ class App extends Component {
       };
     });
   };
-
   addItem = ({ name, salary }) => {
     const newEmployee = {
       name: name,
       salary: salary,
       id: this.itemId++,
-      isRaise: false,
+      raise: false,
+      increase: false,
     };
-
     this.setState(({ employees }) => {
       const newArr = [...employees, newEmployee];
       return { employees: newArr };
     });
   };
+  onToggleIncrease = (id) => {
+    this.setState(({ employees }) => ({
+      employees: employees.map((employee) =>
+        employee.id === id
+          ? { ...employee, increase: !employee.increase }
+          : employee
+      ),
+    }));
+  };
+
+  onToggleRaise = (id) => {
+    this.setState(({ employees }) => ({
+      employees: employees.map((employee) => 
+        employee.id === id ? { ...employee, raise: !employee.raise } : employee
+      ),
+    }));
+  };
+
   render() {
     const { employees } = this.state;
 
@@ -67,7 +85,12 @@ class App extends Component {
           <SearchPanel />
           <AppFilter />
         </div>
-        <EmployeesList onDelete={this.deleteItem} employees={employees} />
+        <EmployeesList
+          onToggleIncrease={this.onToggleIncrease}
+          onToggleRaise={this.onToggleRaise}
+          onDelete={this.deleteItem}
+          employees={employees}
+        />
         <EmployeesAddForm onAdd={this.addItem} />
       </div>
     );
