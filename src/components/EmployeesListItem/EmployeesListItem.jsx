@@ -30,7 +30,7 @@ class EmployeesListItem extends Component {
   };
 
   render() {
-    const { name, salary } = this.props;
+    const { name, salary, onDelete } = this.props;
     const { isPromoted, hasIncrease } = this.state;
 
     let classNames = clsx(css.employeeItem, {
@@ -58,10 +58,11 @@ class EmployeesListItem extends Component {
               className={css.icon}
               role="button"
               title="Delete Employee"
+              onClick={onDelete}
             />
           </li>
           <li
-            className={clsx(css.controlsItemStar, css.controlsItem,{
+            className={clsx(css.controlsItemStar, css.controlsItem, {
               [css.raise]: hasIncrease,
             })}
           >
