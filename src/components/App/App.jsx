@@ -57,23 +57,35 @@ class App extends Component {
       return { employees: newArr };
     });
   };
-  onToggleIncrease = (id) => {
+
+  onToggleProp = (id, prop) => {
     this.setState(({ employees }) => ({
-      employees: employees.map((employee) =>
-        employee.id === id
-          ? { ...employee, increase: !employee.increase }
-          : employee
-      ),
+      employees: employees.map((employee) => {
+        if (employee.id === id) {
+          return { ...employee, [prop]: !employee[prop] };
+        }
+        return employee;
+      }),
     }));
   };
 
-  onToggleRaise = (id) => {
-    this.setState(({ employees }) => ({
-      employees: employees.map((employee) =>
-        employee.id === id ? { ...employee, raise: !employee.raise } : employee
-      ),
-    }));
-  };
+  // onToggleIncrease = (id) => {
+  //   this.setState(({ employees }) => ({
+  //     employees: employees.map((employee) =>
+  //       employee.id === id
+  //         ? { ...employee, increase: !employee.increase }
+  //         : employee
+  //     ),
+  //   }));
+  // };
+
+  // onToggleRaise = (id) => {
+  //   this.setState(({ employees }) => ({
+  //     employees: employees.map((employee) =>
+  //       employee.id === id ? { ...employee, raise: !employee.raise } : employee
+  //     ),
+  //   }));
+  // };
 
   render() {
     const { employees } = this.state;
@@ -82,15 +94,16 @@ class App extends Component {
       <div className={css.container}>
         <AppInfo
           employeesNum={employees.length}
-          increase={employees.filter((employee) => employee.increase !== false).length}
+          increase={
+            employees.filter((employee) => employee.increase !== false).length
+          }
         />
         <div className={css.searchContainer}>
           <SearchPanel />
           <AppFilter />
         </div>
         <EmployeesList
-          onToggleIncrease={this.onToggleIncrease}
-          onToggleRaise={this.onToggleRaise}
+          onToggleProp={this.onToggleProp}
           onDelete={this.deleteItem}
           employees={employees}
         />

@@ -11,8 +11,7 @@ const EmployeesListItem = (props) => {
     name,
     salary,
     onDelete,
-    onToggleIncrease,
-    onToggleRaise,
+    onToggleProp,
     raise,
     increase,
   } = props;
@@ -23,7 +22,7 @@ const EmployeesListItem = (props) => {
 
   return (
     <li className={classNames}>
-      <h3 onClick={onToggleRaise} className="name">
+      <h3 onClick={onToggleProp} data-toggle="raise" className="name">
         {name}
       </h3>
       <p className="salary">{salary}$</p>
@@ -33,7 +32,8 @@ const EmployeesListItem = (props) => {
             className={clsx(css.icon, {
               [css.raise]: increase,
             })}
-            onClick={onToggleIncrease}
+            onClick={onToggleProp}
+            data-toggle="increase"
             role="button"
             title="Toggle Promotion"
           />
