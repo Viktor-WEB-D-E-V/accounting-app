@@ -69,24 +69,6 @@ class App extends Component {
     }));
   };
 
-  // onToggleIncrease = (id) => {
-  //   this.setState(({ employees }) => ({
-  //     employees: employees.map((employee) =>
-  //       employee.id === id
-  //         ? { ...employee, increase: !employee.increase }
-  //         : employee
-  //     ),
-  //   }));
-  // };
-
-  // onToggleRaise = (id) => {
-  //   this.setState(({ employees }) => ({
-  //     employees: employees.map((employee) =>
-  //       employee.id === id ? { ...employee, raise: !employee.raise } : employee
-  //     ),
-  //   }));
-  // };
-
   render() {
     const { employees } = this.state;
 
