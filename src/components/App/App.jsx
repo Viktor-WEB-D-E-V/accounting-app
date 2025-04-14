@@ -34,6 +34,7 @@ class App extends Component {
           id: 3,
         },
       ],
+      phrase: "",
     };
   }
 
@@ -69,25 +70,39 @@ class App extends Component {
     }));
   };
 
+  searchEmployee = (items, phrase) => {
+    if (phrase.length === 0) {
+      return items;
+    }
+
+    return items.filter((item) => {
+      return item.name.indexOf(phrase) > -1;
+    });
+  };
+
+  onUpdateSearch = (phrase) => {
+    this.setState({
+      phrase,
+    });
+  };
   render() {
-    const { employees } = this.state;
+    const { employees, phrase } = this.state;
+    const increased = employees.filter(
+      (employee) => employee.increase !== false
+    ).length;
+    const visibleData = this.searchEmployee(employees, phrase);
 
     return (
       <div className={css.container}>
-        <AppInfo
-          employeesNum={employees.length}
-          increase={
-            employees.filter((employee) => employee.increase !== false).length
-          }
-        />
+        <AppInfo employeesNum={employees.length} increase={increased} />
         <div className={css.searchContainer}>
-          <SearchPanel />
+          <SearchPanel onUpdateSearch={this.onUpdateSearch} />
           <AppFilter />
         </div>
         <EmployeesList
           onToggleProp={this.onToggleProp}
           onDelete={this.deleteItem}
-          employees={employees}
+          employees={visibleData}
         />
         <EmployeesAddForm onAdd={this.addItem} />
       </div>
