@@ -22,3 +22,10 @@
 
   transition: background-color 250ms linear;
 }
+
+.active {
+  background-color: white;
+  color: rgb(151, 7, 71);
+  border: 1px solid rgb(151, 7, 71);
+  box-shadow: 0 0 5px rgba(151, 7, 71, 0.5);
+}
