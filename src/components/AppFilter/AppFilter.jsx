@@ -7,8 +7,8 @@ const AppFilter = ({ filter, onFilterSelect }) => {
       label: "All employees",
     },
     {
-      name: "raise",
-      label: "Raise",
+      name: "increase",
+      label: "Increase",
     },
     {
       name: "moreThen1000",
@@ -37,9 +37,6 @@ const AppFilter = ({ filter, onFilterSelect }) => {
   return (
     <div className={css.btnFilterGroup}>
       {btns}
-      {/* <button className={css.item}>Employees</button>
-      <button className={css.item}>Raise</button>
-      <button className={css.item}> &gt;$1000 Salary</button> */}
     </div>
   );
 };

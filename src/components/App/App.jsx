@@ -9,7 +9,7 @@ import { Component } from "react";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.itemId = 4;
+    this.nextEmployeeId = 4;
     this.state = {
       employees: [
         {
@@ -34,23 +34,23 @@ class App extends Component {
           id: 3,
         },
       ],
-      phrase: "",
+      searchTerm: "",
       filter: "all",
     };
   }
 
-  deleteItem = (id) => {
+  handleDeleteEmployee = (id) => {
     this.setState(({ employees }) => {
       return {
         employees: employees.filter((employee) => employee.id !== id),
       };
     });
   };
-  addItem = ({ name, salary }) => {
+  handleAddEmployee = ({ name, salary }) => {
     const newEmployee = {
       name: name,
       salary: salary,
-      id: this.itemId++,
+      id: this.nextEmployeeId++,
       raise: false,
       increase: false,
     };
@@ -60,7 +60,7 @@ class App extends Component {
     });
   };
 
-  onToggleProp = (id, prop) => {
+  handleToggleProperty = (id, prop) => {
     this.setState(({ employees }) => ({
       employees: employees.map((employee) => {
         if (employee.id === id) {
@@ -71,20 +71,20 @@ class App extends Component {
     }));
   };
 
-  searchEmployee = (items, phrase) => {
-    if (phrase.length === 0) {
+  getSearchedEmployees = (items, searchTerm) => {
+    if (searchTerm.length === 0) {
       return items;
     }
 
     return items.filter((item) => {
-      return item.name.indexOf(phrase) > -1;
+      return item.name.toLowerCase().includes(searchTerm.toLowerCase());
     });
   };
 
-  filterEmployee = (items, filter) => {
+  getFilteredEmployees = (items, filter) => {
     switch (filter) {
-      case "raise":
-        return items.filter((item) => item.raise);
+      case "increase":
+        return items.filter((item) => item.increase);
 
       case "moreThen1000":
         return items.filter((item) => item.salary > 1000);
@@ -94,22 +94,22 @@ class App extends Component {
     }
   };
 
-  onFilterSelect = (filter) => {
+  handleFilterChange = (filter) => {
     this.setState({ filter });
   };
-  onUpdateSearch = (phrase) => {
+  handleSearchChange = (searchTerm) => {
     this.setState({
-      phrase,
+      searchTerm,
     });
   };
   render() {
-    const { employees, phrase, filter } = this.state;
+    const { employees, searchTerm, filter } = this.state;
     const increased = employees.filter(
       (employee) => employee.increase !== false
     ).length;
 
-    const visibleData = this.filterEmployee(
-      this.searchEmployee(employees, phrase),
+    const visibleData = this.getFilteredEmployees(
+      this.getSearchedEmployees(employees, searchTerm),
       filter
     );
 
@@ -117,15 +117,15 @@ class App extends Component {
       <div className={css.container}>
         <AppInfo employeesNum={employees.length} increase={increased} />
         <div className={css.searchContainer}>
-          <SearchPanel onUpdateSearch={this.onUpdateSearch} />
-          <AppFilter filter={filter} onFilterSelect={this.onFilterSelect} />
+          <SearchPanel onUpdateSearch={this.handleSearchChange} />
+          <AppFilter filter={filter} onFilterSelect={this.handleFilterChange} />
         </div>
         <EmployeesList
-          onToggleProp={this.onToggleProp}
-          onDelete={this.deleteItem}
+          onToggleProp={this.handleToggleProperty}
+          onDelete={this.handleDeleteEmployee}
           employees={visibleData}
         />
-        <EmployeesAddForm onAdd={this.addItem} />
+        <EmployeesAddForm onAdd={this.handleAddEmployee} />
       </div>
     );
   }
