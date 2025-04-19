@@ -3,7 +3,6 @@ import { Component } from "react";
 class EmployeesAddForm extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       name: "",
       salary: "",
@@ -16,15 +15,17 @@ class EmployeesAddForm extends Component {
     });
   };
 
-  onSumbit = (e) => {
+  onSubmit = (e) => {
     e.preventDefault();
-    this.props.onAdd(this.state);
+    const { name, salary } = this.state;
 
-    this.setState({
-      name: "",
-      salary: "",
-    });
+    if (name.trim() === "" || salary.trim() === "") return;
+
+    this.props.onAdd({ name, salary: Number(salary) });
+
+    this.setState({ name: "", salary: "" });
   };
+
   render() {
     const { name, salary } = this.state;
 
@@ -48,11 +49,10 @@ class EmployeesAddForm extends Component {
             value={salary}
             onChange={this.onValueChange}
           />
-
           <button
             className={css.submitBtn}
             type="submit"
-            onClick={this.onSumbit}
+            onClick={this.onSubmit}
           >
             Add
           </button>
